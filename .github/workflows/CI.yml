@@ -1,5 +1,10 @@
 name: Build LaTeX document
-on: [push]
+on: 
+  push:
+    paths-ignore:
+      - README.md
+      - LICENSE
+      - lyx/
 jobs:
   build_latex:
     runs-on: ubuntu-latest
@@ -15,4 +20,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: quantum-optics-notes
-          path: main.pdf
+          path: src/main.pdf
