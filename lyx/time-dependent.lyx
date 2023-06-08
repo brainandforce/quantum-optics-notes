@@ -1,0 +1,943 @@
+#LyX file created by tex2lyx 2.3
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin /home/bsflores/git/quantum-optics-notes/src/
+\textclass article
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package none
+\inputencoding auto
+\fontencoding default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 2
+\use_package amssymb 0
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Perturbation theory of quantum state evolving in time
+\end_layout
+
+\begin_layout Subsection
+Time evolution of quantum states
+\end_layout
+
+\begin_layout Standard
+A quantum system can be described in terms of a wavefunction 
+\begin_inset Formula $\psi$
+\end_inset
+
+ that contains all of the observable information associated with the system. These observables are encoded by Hermitian linear operators that act on 
+\begin_inset Formula $\psi$
+\end_inset
+
+. Of particular note is the Hamiltonian operator 
+\begin_inset Formula $\hat{H}$
+\end_inset
+
+, which describes the time evolution of 
+\begin_inset Formula $\psi$
+\end_inset
+
+. This defines the 
+\shape italic
+time-dependent SchrÃ¶dinger equation
+\shape default
+: 
+\begin_inset Formula \begin{equation}
+i \hbar \frac{\partial}{\partial t} \psi\left(x,t\right) = \hat{H}\psi\left(x,t\right) 
+\end{equation}
+\end_inset
+
+The wavefunction 
+\begin_inset Formula $\psi$
+\end_inset
+
+ can be described as a normalized square-integrable function. If we describe 
+\begin_inset Formula $\psi$
+\end_inset
+
+ as a function from a spatial coordinate and time to a complex scalar, multiplying 
+\begin_inset Formula $\psi$
+\end_inset
+
+ by a unit complex number (phase factor) does not affect the values of observable quantities associated with 
+\begin_inset Formula $\psi$
+\end_inset
+
+, so they describe the same state.
+\end_layout
+
+\begin_layout Standard
+To describe the evolution of 
+\begin_inset Formula $\psi\left(\vec{x},t\right)$
+\end_inset
+
+, we define the 
+\shape italic
+propagator
+\shape default
+ as an exponentiation of the Hamiltonian which acts upon the state at a known time 
+\begin_inset Formula $t$
+\end_inset
+
+ to generate the state at a different time 
+\begin_inset Formula $t + \Delta t$
+\end_inset
+
+: 
+\begin_inset Formula \begin{equation}
+\psi\left(\vec{x},t + \Delta t\right) = \psi\left(\vec{x},t\right) e^\frac{-i\hat{H}\Delta t}{\hbar}
+\end{equation}
+\end_inset
+
+We can derive this by describing the wavefunction at a 
+\begin_inset Formula $t + \Delta t$
+\end_inset
+
+ as a Taylor expansion of 
+\begin_inset Formula $\psi\left(\vec{x},t\right)$
+\end_inset
+
+: 
+\begin_inset Formula \begin{flalign*}
+\psi\left(\vec{x},t + \Delta t\right) & = \sum_{n = 0}^{\infty} \left[
+    \frac{\Delta t^n}{n!} \frac{\partial^n}{\partial t^n} \psi\left(\vec{x},t\right)
+    \right]
+\end{flalign*}
+\end_inset
+
+Now we can use the time-dependent SchrÃ¶dinger equation to substitute the wavefunction derivatives in terms of applying the Hamiltonian operator to the wavefunction, starting by introducing factors of 
+\begin_inset Formula $i \hbar$
+\end_inset
+
+ to the derivative: 
+\begin_inset Formula \begin{flalign*}
+\psi\left(\vec{x},t + \Delta t\right) & = \sum_{n = 0}^{\infty} \left[
+    \frac{1}{n!} \left(\frac{\Delta t}{i\hbar}\right)^n
+    \left(i \hbar\right)^n \frac{\partial^n}{\partial t^n} \psi\left(\vec{x},t\right)\right]    \\
+& = \sum_{n = 0}^{\infty} \left[
+    \frac{1}{n!} \left(\frac{\Delta t}{i\hbar}\right)^n
+    \left(i \hbar \frac{\partial}{\partial t}\right)^n \psi\left(\vec{x},t\right)\right]    \\
+& = \sum_{n = 0}^{\infty} \left[ 
+    \frac{1}{n!} \left(\frac{\Delta t}{i\hbar}\right)^n
+    \hat{H}^n \psi\left(\vec{x},t\right)\right] \\
+& = \sum_{n = 0}^{\infty} \left[ 
+    \frac{1}{n!} \left(\frac{\hat{H}\Delta t}{i\hbar}\right)^n \psi\left(\vec{x},t\right)\right]  \\
+& = \sum_{n = 0}^{\infty} \left[ 
+    \frac{1}{n!} \left(-\frac{i\hat{H}\Delta t}{\hbar}\right)^n \psi\left(\vec{x},t\right)\right] \\
+\end{flalign*}
+\end_inset
+
+Because the Hamiltonian is a linear operator, we can use its additive property to pull the 
+\begin_inset Formula $\psi\left(\vec{x},t\right)$
+\end_inset
+
+ terms out of the sum: 
+\begin_inset Formula \begin{flalign*}
+\sum_{n = 0}^{\infty} \left[ 
+    \frac{1}{n!} \left(-\frac{i\hat{H}\Delta t}{\hbar}\right)^n \psi\left(\vec{x},t\right)\right]
+& = \sum_{n = 0}^{\infty} \left[ 
+    \frac{1}{n!} \left(-\frac{i\hat{H}\Delta t}{\hbar}\right)^n\right] \psi\left(\vec{x},t\right)
+\end{flalign*}
+\end_inset
+
+What we find is that the sum of operators is actually an exponentiation of 
+\begin_inset Formula $-\frac{i\hat{H}\Delta t}{\hbar}$
+\end_inset
+
+, using the definiton of the Taylor series of the exponential: 
+\begin_inset Formula \begin{flalign*}
+\sum_{n = 0}^{\infty} \left[ 
+    \frac{1}{n!} \left(-\frac{i\hat{H}\Delta t}{\hbar}\right)^n\right] \psi\left(\vec{x},t\right)
+& = e^{-\frac{i\hat{H}\Delta t}{\hbar}}\psi\left(\vec{x},t\right)
+\end{flalign*}
+\end_inset
+
+The new operator we derive is the 
+\shape italic
+propagator
+\shape default
+. Any state subject to a Hamiltonian will evolve in time according to the action of the propagator upon the wavefunction.
+\end_layout
+
+\begin_layout Standard
+Some Hamiltonians admit 
+\shape italic
+stationary states
+\shape default
+ whose observables do not change over time. The time evolution operator applied to a stationary state 
+\begin_inset Formula $\varphi\left(\vec{x},t\right)$
+\end_inset
+
+ will be equal to multiplication by a unit complex scalar, generated by exponentiating a real scalar: 
+\begin_inset Formula \begin{equation}
+\varphi\left(\vec{x},t + \Delta t\right) = e^{-\frac{i\hat{H}t}{\hbar}}\varphi\left(\vec{x},t\right)
+= e^{-\frac{iEt}{\hbar}} \varphi\left(\vec{x},t\right)
+\end{equation}
+\end_inset
+
+The real scalar 
+\begin_inset Formula $E = \hbar \omega$
+\end_inset
+
+ is the energy of the system. This allows us to write an equation that relates the Hamiltonian operator and the energy scalar for the stationary states. This equation is the 
+\shape italic
+time-independent SchrÃ¶dinger equation
+\shape default
+: 
+\begin_inset Formula \begin{equation}
+\hat{H}\varphi\left(\vec{x},t\right) = E\varphi\left(\vec{x},t\right)
+\end{equation}
+\end_inset
+
+Because this is an eigenvalue equation, the stationary states of 
+\begin_inset Formula $\hat{H}$
+\end_inset
+
+ are also known as 
+\shape italic
+eigenstates
+\shape default
+, which correspond to eigenvectors of 
+\begin_inset Formula $\hat{H}$
+\end_inset
+
+, with the eigenvalues being the energies of the states.
+\end_layout
+
+\begin_layout Standard
+If the Hamiltonian contains an infinitely deep potential well and an infinite number of eigenstates, any wavefunction 
+\begin_inset Formula $\psi$
+\end_inset
+
+ can be expressed as a linear combination of eigenstates: 
+\begin_inset Formula \begin{equation}
+\psi\left(\vec{x},t\right) = \sum_{n = 0}^{\infty} c_n \varphi_n\left(\vec{x},t\right)
+\end{equation}
+\end_inset
+
+The time evolution of a linear combination of eigenstates can be calculated by propagating each component of the eigenbasis using the associated energies or frequencies of each state: 
+\begin_inset Formula \begin{equation}
+\psi(\vec{x},t + \Delta t)
+    = \sum_{n = 0}^{\infty} e^{-\frac{i E_n \Delta t}{\hbar}} c_n \varphi_n\left(\vec{x},t\right) 
+    = \sum_{n = 0}^{\infty} e^{-i\omega_n \Delta t} c_n \varphi_n\left(\vec{x},t\right) 
+\end{equation}
+\end_inset
+
+Note that the eigenstates all undergo rotations at their own frequencies 
+\begin_inset Formula $\omega_n$
+\end_inset
+
+. Although a global shift of phase induced by multiplying 
+\begin_inset Formula $\psi$
+\end_inset
+
+ by a complex scalar does not change the observable state, shifting the phases of each individual component by different amounts 
+\shape italic
+does
+\shape default
+ change the state over time.
+\end_layout
+
+\begin_layout Standard
+One last point to remember is that Hamiltonian operators 
+\begin_inset Formula $\hat{H}$
+\end_inset
+
+ may be shifted by some constant energy 
+\begin_inset Formula $E_0$
+\end_inset
+
+, and that value does not affect the dynamics of the system: 
+\begin_inset Formula \begin{flalign*}
+\psi(\vec{x},t + \Delta t)
+& = e^{-\frac{i\left(\hat{H} + E_0\right)\Delta t}{\hbar}} \psi(\vec{x},t)  \\
+& = e^{-\frac{i\hat{H}\Delta t}{\hbar}}e^{-\frac{i E_0 \Delta t}{\hbar}} \psi(\vec{x},t)
+\end{flalign*}
+\end_inset
+
+Because 
+\begin_inset Formula $E_0$
+\end_inset
+
+ is a constant, the second exponential is a complex constant, and it only serves to change the rate of phase rotation of the wavefunction, which has no observable consequences. However, shifting the Hamiltonian so that the energy of an eigenstate of interest is zero allows for the propagation of that state to be described with an identity operator: 
+\begin_inset Formula \begin{flalign*}
+\varphi_n(\vec{x},t + \Delta t)
+& = e^{-\frac{i\left(\hat{H} - E_n\right)\Delta t}{\hbar}} \varphi_n(\vec{x},t) \\
+& = e^{-\frac{i\hat{H}\Delta t}{\hbar}}e^{\frac{i E_n \Delta t}{\hbar}} \varphi_n(\vec{x},t)   \\
+& = e^{-\frac{i E_n \Delta t}{\hbar}}e^{\frac{i E_n \Delta t}{\hbar}} \varphi_n(\vec{x},t)  \\
+& = \varphi_n(\vec{x},t)
+\end{flalign*}
+\end_inset
+
+This allows us to describe the relative differences in energy or frequency between a reference eigenstate and another eigenstate of interest. Only the relative differences in frequencies between states have physically observable consequences.
+\end_layout
+
+\begin_layout Subsection
+The Heisenberg picture
+\end_layout
+
+\begin_layout Standard
+The time-dependent SchrÃ¶dinger equation describes the evolution of a quantum state over time. Although the observables associatated with the state are fixed, the operators that act upon the state to generate the observable are not. But this choice is arbitrary: it is entirely possible to develop a quantum theory of fixed states and operators which propagate over time to generate the changes in observables. This formulation is known as the 
+\shape italic
+Heisenberg picture
+\shape default
+.
+\end_layout
+
+\begin_layout Standard
+To derive this picture, we start with the calculation of expectation values from quantum state 
+\begin_inset Formula $\psi\left(\vec{x},t\right)$
+\end_inset
+
+. For some observable 
+\begin_inset Formula $\hat{O}$
+\end_inset
+
+, the expectation value is 
+\begin_inset Formula \begin{equation}
+\langle\hat{O}\rangle\left(t\right) = \int 
+    \psi\left(\vec{x},t\right)^\dagger \hat{O} \psi\left(\vec{x},t\right) d\vec{x}
+\end{equation}
+\end_inset
+
+But we can describe the wavefunctions at time 
+\begin_inset Formula $t$
+\end_inset
+
+ in terms of 
+\begin_inset Formula $\psi\left(\vec{x},0\right)$
+\end_inset
+
+ (shortened to 
+\begin_inset Formula $\psi\left(\vec{x}\right)$
+\end_inset
+
+) and the propagator: 
+\begin_inset Formula \begin{equation}
+\langle\hat{O}\rangle\left(t\right) = \int
+    \left(e^{-\frac{i\hat{H}t}{\hbar}}\psi\left(\vec{x}\right)\right)^\dagger 
+    \hat{O} e^{-\frac{i\hat{H}t}{\hbar}} \psi\left(\vec{x}\right) d\vec{x}
+\end{equation}
+\end_inset
+
+When we apply the adjoint to the application of an operator to a wavefunction, we get the reverse product of the adjoints of the operator and the wavefunction: 
+\begin_inset Formula \begin{equation}
+\langle\hat{O}\rangle\left(t\right) = \int
+    \psi\left(\vec{x}\right)^\dagger \left(e^{-\frac{i\hat{H}t}{\hbar}}\right)^\dagger
+    \hat{O} e^{-\frac{i\hat{H}t}{\hbar}} \psi\left(\vec{x}\right) d\vec{x}
+\end{equation}
+\end_inset
+
+We've managed to transfer the action of the propagator from the wavefunction to the operator. In general, operators evolve according to the following equation: 
+\begin_inset Formula \begin{equation}
+\hat{O}\left(t\right) =
+\left(e^{-\frac{i\hat{H}t}{\hbar}}\right)^\dagger \hat{O} e^{-\frac{i\hat{H}t}{\hbar}}
+\end{equation}
+\end_inset
+
+The propagator, being the exponential of a Hermitian operator, is 
+\shape italic
+unitary
+\shape default
+, meaning that it preserves dot products. This also means its adjoint is equal to its inverse, so we can rewrite the equation: 
+\begin_inset Formula \begin{equation}
+\hat{O}\left(t\right) = e^{\frac{i\hat{H}t}{\hbar}} \hat{O} e^{-\frac{i\hat{H}t}{\hbar}}
+\end{equation}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In many cases, we are interested in the changes in observable quantities, such as position or momentum, over time. What happens if we take derivatives of the operators with respect to time? 
+\begin_inset Formula \begin{flalign*}
+\frac{d}{dt} \hat{O}\left(t\right)
+& = \frac{d}{dt}\left(e^{\frac{i\hat{H}t}{\hbar}} \hat{O} e^{-\frac{i\hat{H}t}{\hbar}}\right)   \\
+& = \frac{d}{dt}\left(e^{\frac{i\hat{H}t}{\hbar}}\right) \hat{O} e^{-\frac{i\hat{H}t}{\hbar}} +
+    e^{\frac{i\hat{H}t}{\hbar}} \hat{O} \frac{d}{dt}\left(e^{-\frac{i\hat{H}t}{\hbar}}\right)   \\
+& = \frac{i}{\hbar} \left(
+    e^{\frac{i\hat{H}t}{\hbar}} \hat{H}^\dagger \hat{O} e^{-\frac{i\hat{H}t}{\hbar}} -
+    e^{\frac{i\hat{H}t}{\hbar}} \hat{O} \hat{H} e^{-\frac{i\hat{H}t}{\hbar}}\right)
+\end{flalign*}
+\end_inset
+
+We use the fact that 
+\begin_inset Formula $\hat{H}$
+\end_inset
+
+ is a Hermitian operator, meaning that it is equal to its adjoint: 
+\begin_inset Formula \begin{flalign*}
+\frac{d}{dt} \hat{O}\left(t\right)
+& = \frac{i}{\hbar} \left(
+    e^{\frac{i\hat{H}t}{\hbar}} \hat{H} \hat{O} e^{-\frac{i\hat{H}t}{\hbar}} -
+    e^{\frac{i\hat{H}t}{\hbar}} \hat{O} \hat{H} e^{-\frac{i\hat{H}t}{\hbar}}\right) \\
+& = \frac{i}{\hbar} \left(
+    e^{\frac{i\hat{H}t}{\hbar}} \hat{H} e^{-\frac{i\hat{H}t}{\hbar}} 
+    e^{\frac{i\hat{H}t}{\hbar}} \hat{O} e^{-\frac{i\hat{H}t}{\hbar}} -
+    e^{\frac{i\hat{H}t}{\hbar}} \hat{O} e^{-\frac{i\hat{H}t}{\hbar}}
+    e^{\frac{i\hat{H}t}{\hbar}} \hat{H} e^{-\frac{i\hat{H}t}{\hbar}}\right)    \\
+& = \frac{i}{\hbar} \left(\hat{H}\left(t\right) \hat{O} \left(t\right) -
+    \hat{O} \left(t\right) \hat{H}\left(t\right)\right)
+\end{flalign*}
+\end_inset
+
+It should now be apparent that the quantity in parentheses is the commutator of 
+\begin_inset Formula $\hat{H}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{O}$
+\end_inset
+
+: 
+\begin_inset Formula \begin{equation}
+\frac{d}{dt} \hat{O}\left(t\right)
+    = \frac{i}{\hbar} \left[\hat{H}\left(t\right), \hat{O}\left(t\right)\right]
+    = \frac{1}{i\hbar}\left[\hat{O}\left(t\right), \hat{H}\left(t\right)\right]
+\end{equation}
+\end_inset
+
+This is the 
+\shape italic
+Heisenberg equation
+\shape default
+. Note that the Hamiltonian itself may be propagated over time: this will be important for the next portion.
+\end_layout
+
+\begin_layout Subsection
+The interaction picture
+\end_layout
+
+\begin_layout Standard
+As hinted by the derivation of the Heisenberg picture, there are not just two different perspectives of a quantum system, but an infinite number of possible perspectives that depend on the choice of unitary operator. This is useful in perturbation theory, where we break up the Hamiltonian into an analytically solvable term and a small perturbation.
+\end_layout
+
+\begin_layout Standard
+Consider a Hamiltonian that consists of two terms: a base term 
+\begin_inset Formula $\hat{H}_0$
+\end_inset
+
+, and an interaction term 
+\begin_inset Formula $\hat{H}_I$
+\end_inset
+
+, which in the cases we consider in the future may be time dependent. The associated propagator can be naturally divided: 
+\begin_inset Formula \begin{flalign}
+\hat{U} & = e^{-\frac{i}{\hbar}\left(\hat{H}_0 + \hat{H}_I\right)t}       \\
+    & = e^{-\frac{i}{\hbar}\hat{H}_0 t} e^{-\frac{i}{\hbar}\hat{H}_I t}   \\
+    & = \hat{U}_0 \hat{U}_I = \hat{U}_I \hat{U}_0
+\end{flalign}
+\end_inset
+
+We can assign each component of the propagator to different duties: 
+\begin_inset Formula $\hat{U}_0$
+\end_inset
+
+ transforms the operators and 
+\begin_inset Formula $\hat{U}_I$
+\end_inset
+
+ transforms the states: 
+\begin_inset Formula \begin{flalign}
+\psi\left(\vec{x},t\right) & = e^{-\frac{i}{\hbar}\hat{H}_I t} \psi\left(\vec{x},0\right)   \\
+\hat{O}(t) & = e^{\frac{i}{\hbar}\hat{H}_0 t} \hat{O}(0) e^{-\frac{i}{\hbar}\hat{H}_0 t}
+\end{flalign}
+\end_inset
+
+This gives us the equations of motion for both the states and operators: 
+\begin_inset Formula \begin{flalign}
+i\hbar \frac{d}{dt} \psi\left(\vec{x},t\right) & = \hat{H}_I \psi\left(\vec{x},t\right) \\
+\frac{d}{dt}\hat{O}(t) & = \frac{1}{i\hbar}\left[\hat{O}(t), \hat{H}_0(t)\right]
+\end{flalign}
+\end_inset
+
+Because 
+\begin_inset Formula $\hat{H}_0$
+\end_inset
+
+ is constant over time, we have a simpler expression for the time propagation of an operator, and the propagation of the wavefunction is given only in terms of the interaction Hamiltonian 
+\begin_inset Formula $\hat{H}_I$
+\end_inset
+
+. We could also reverse this to obtain a complementary picture. This division of the propagator generates the 
+\shape italic
+interaction picture
+\shape default
+.
+\end_layout
+
+\begin_layout Subsection
+Incorporating perturbation theory
+\end_layout
+
+\begin_layout Standard
+The generic Hamiltonian we discussed previously is amenable to treatment with perturbation theory. The idea behind perturbation theory is that we can describe a Hamiltonian 
+\begin_inset Formula $\hat{H}$
+\end_inset
+
+ that would be difficult or impossible to solve analytically as the sum of an analytically solvable Hamiltonian 
+\begin_inset Formula $\hat{H}_0$
+\end_inset
+
+ and a small perturbation 
+\begin_inset Formula $\hat{H}_I$
+\end_inset
+
+. The solutions to 
+\begin_inset Formula $\hat{H}$
+\end_inset
+
+ will resemble those Of 
+\begin_inset Formula $\hat{H}_0$
+\end_inset
+
+, but with correction terms that can be calculated by 
+\begin_inset Formula $\hat{H}_I$
+\end_inset
+
+. Provided that 
+\begin_inset Formula $\hat{H}_I$
+\end_inset
+
+ is sufficiently small, the corrections can be written in terms of a converging power series.
+\end_layout
+
+\begin_layout Standard
+Consider an atom with Hamiltonian 
+\begin_inset Formula $\hat{H}_0$
+\end_inset
+
+ subject to a perturbation 
+\begin_inset Formula $\hat{H}_I$
+\end_inset
+
+ – in the context of quantum optics, 
+\begin_inset Formula $\hat{H}_I$
+\end_inset
+
+ can be thought of as an electromagnetic wave. At some time 
+\begin_inset Formula $t$
+\end_inset
+
+, the wavefunction 
+\begin_inset Formula $\psi\left(\vec{x},t\right)$
+\end_inset
+
+ can be represented in terms of the eigenstates of 
+\begin_inset Formula $\hat{H}_0$
+\end_inset
+
+, 
+\begin_inset Formula $\phi^{(0)}_n$
+\end_inset
+
+: 
+\begin_inset Formula \begin{equation}
+\psi\left(\vec{x},t\right) = \sum_n c_n\left(t\right) e^{-\frac{i}{\hbar}E_n t} \phi^ {(0)}_n
+\end{equation}
+\end_inset
+
+Although we used the eigenstates of 
+\begin_inset Formula $\hat{H}_0$
+\end_inset
+
+ as a basis for the wavefunction, its time evolution is subject to the full Hamiltonian, and therefore, the coefficients 
+\begin_inset Formula $c_n$
+\end_inset
+
+ are not fixed, but vary over time in a way that depends on the perturbation. To understand exactly how they vary, we can insert the wavefunction into the time-dependent SchrÃ¶dinger equation: 
+\begin_inset Formula \begin{equation}
+i\hbar\frac{\partial}{\partial t} \sum_n\left[
+    c_n\left(t\right) e^{-\frac{i}{\hbar}E_n t} \phi^{(0)}_n
+\right] = \left(\hat{H}_0 + \hat{H}_I\right) \sum_n \left[
+    c_n\left(t\right) e^{-\frac{i}{\hbar}E_n t} \phi^{(0)}_n
+\right]
+\end{equation}
+\end_inset
+
+We'll use the product rule to split the derivative on the left into portions that depend on the coefficients 
+\begin_inset Formula $c_n$
+\end_inset
+
+ and the propagated eigenstate of 
+\begin_inset Formula $\hat{H}_0$
+\end_inset
+
+. Linearity allows us to omit the summation for these steps: 
+\begin_inset Formula \begin{equation}
+i\hbar \frac{\partial}{\partial t}
+\left[c_n\left(t\right) e^{-\frac{i}{\hbar}E_n t} \phi^{(0)}_n\right]
+= i\hbar \frac{\partial c_n}{\partial t} e^{-\frac{i}{\hbar}E_n t} \phi^ {(0)}_n + 
+    i\hbar c_n\left(t\right) 
+    \frac{\partial}{\partial t}\left[e^{-\frac{i}{\hbar}E_n t} \phi^{(0)}_n\right]
+\end{equation}
+\end_inset
+
+We'll apply the Hamiltonian in a similar manner. Because 
+\begin_inset Formula $c_n\left(t\right)$
+\end_inset
+
+ only scales the basis wavefunctions, it can be pulled out of the Hamiltonian operator. 
+\begin_inset Formula \begin{flalign}
+\hat{H} \left[c_n\left(t\right) e^{-\frac{i}{\hbar}E_n t} \phi^{(0)}_n\right]
+& = c_n\left(t\right) \hat{H} \left[e^{-\frac{i}{\hbar}E_n t} \phi^{(0)}_n\right]
+\\
+& = c_n\left(t\right) \left(\hat{H}_0 + \hat{H}_I\right) 
+    \left[e^{-\frac{i}{\hbar}E_n t} \phi^{(0)}_n\right]
+\\
+& = c_n\left(t\right) \hat{H}_0\left[e^{-\frac{i}{\hbar}E_n t} \phi^{(0)}_n\right] +
+    c_n\left(t\right) \hat{H}_I\left[e^{-\frac{i}{\hbar}E_n t} \phi^{(0)}_n\right] 
+\end{flalign}
+\end_inset
+
+What we find is that we have terms originating from the time-dependent SchrÃ¶dinger equation of 
+\begin_inset Formula $\hat{H}_0$
+\end_inset
+
+: 
+\begin_inset Formula \begin{equation}
+i\hbar c_n\left(t\right) \sum_n
+\frac{\partial}{\partial t}\left[e^{-\frac{i}{\hbar}E_n t} \phi^{(0)}_n\right]
+= \sum_n
+c_n\left(t\right) \hat{H}_0\left[e^{-\frac{i}{\hbar}E_n t} \phi^{(0)}_n\right]
+\end{equation}
+\end_inset
+
+We can therefore remove these terms from the time-dependent SchrÃ¶dinger equation of 
+\begin_inset Formula $\hat{H}$
+\end_inset
+
+ and only deal with the ones arising from the perturbation: 
+\begin_inset Formula \begin{equation}
+\sum_n i\hbar \frac{\partial c_n}{\partial t} e^{-\frac{i}{\hbar}E_n t} \phi^{(0)}_n 
+=
+\sum_n c_n\left(t\right) \hat{H}_I\left[e^{-\frac{i}{\hbar}E_n t} \phi^{(0)}_n\right]
+\end{equation}
+\end_inset
+
+If we want to express the evolution of a single coefficient 
+\begin_inset Formula $c_k$
+\end_inset
+
+, we can project this equation onto 
+\begin_inset Formula $\phi^{(0)}_k$
+\end_inset
+
+. Because the eigenstates form an orthonormal basis, we know that terms where 
+\begin_inset Formula $k \neq n$
+\end_inset
+
+ become zero, allowing us to remove a sum on the left: 
+\begin_inset Formula \begin{flalign}
+\sum_n \int 
+\phi^{(0)*}_k i\hbar \frac{\partial c_n}{\partial t} e^{-\frac{i}{\hbar}E_n t} \phi^{(0)}_n
+d\vec{x}
+& = 
+\sum_n \int 
+c_n\left(t\right) \phi_k^{(0)*} \hat{H}_I\left[e^{-\frac{i}{\hbar}E_n t} \phi^{(0)}_n\right]
+d\vec{x}
+\\
+i\hbar \frac{\partial c_k}{\partial t} e^{-\frac{i}{\hbar}E_k t}
+& = 
+\sum_n c_n\left(t\right) 
+\int \phi_k^{(0)*} \hat{H}_I\left[e^{-\frac{i}{\hbar}E_n t} \phi^{(0)}_n\right] d\vec{x}
+\end{flalign}
+\end_inset
+
+Because the propagator behaves like a scalar for the eigenstates, we can remove the propagator from the Hamiltonian operator and combine it with 
+\begin_inset Formula $c_n\left(t\right)$
+\end_inset
+
+. This allows us to simplify the left side: 
+\begin_inset Formula \begin{flalign}
+i\hbar \frac{\partial c_k}{\partial t} e^{-\frac{i}{\hbar}E_k t}
+& = 
+\sum_n c_n\left(t\right) e^{-\frac{i}{\hbar}E_n t}
+\int \phi_k^{(0)*} \hat{H}_I \phi^{(0)}_n d\vec{x}
+\\
+i\hbar \frac{\partial c_k}{\partial t}
+& = 
+\sum_n c_n\left(t\right) e^{-\frac{i}{\hbar}\left(E_n - E_k\right) t} 
+\int \phi_k^{(0)*} \hat{H}_I \phi^{(0)}_n d\vec{x}
+\end{flalign}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider a real system with an atom whose Hamiltonian is 
+\begin_inset Formula $\hat{H}_0$
+\end_inset
+
+ and a perturbation introduced by an electromagnetic wave, contributing the 
+\begin_inset Formula $\hat{H}_I$
+\end_inset
+
+ term. The wave can cause the electrons to move from the atomic ground state 
+\begin_inset Formula $\phi_1$
+\end_inset
+
+ to some other state 
+\begin_inset Formula $\phi_k$
+\end_inset
+
+. To understand what happens here, let's treat the perturbation explicitly. An electromagnetic wave can be described by an expression of the form 
+\begin_inset Formula \begin{equation}
+\gamma\left(\vec{x},t\right) = \cos \left(\vec{k} \cdot \vec{x} - \omega t + \varphi\right)
+\end{equation}
+\end_inset
+
+The vector 
+\begin_inset Formula $\vec{k}$
+\end_inset
+
+ is the wavevector, which represents the direction in which the wave propagates through space. We know that 
+\begin_inset Formula $\vert\vec{k}\vert$
+\end_inset
+
+ is proportional to 
+\begin_inset Formula $\omega$
+\end_inset
+
+ – the conversion factor is the speed of light: 
+\begin_inset Formula \begin{equation}
+\omega = c\vert\vec{k}\vert
+\end{equation}
+\end_inset
+
+Also recall that the energy is proportional to the frequency: 
+\begin_inset Formula \begin{equation}
+E = \hbar \omega
+\end{equation}
+\end_inset
+
+However, we can make a simplifying assumption: for a real atom interacting with photons in the visible spectrum, the wavelength is far larger than the atom. Therefore, we can ignore the spatial component and treat it as a purely temporal wave. As one last simplification, we can remove the phase factor 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ and express the wave in terms of a complex exponential: 
+\begin_inset Formula \begin{equation}
+\hat{H}_I\left(t\right) = \hat{H}_I e^{-i\omega t} = \hat{H}_I e^{-\frac{iEt}{\hbar}}
+\end{equation}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now we can apply this to our time evolution expression to understand how the electromagnetic wave changes the probability of the atom being found in some other state 
+\begin_inset Formula $\phi_k$
+\end_inset
+
+ starting with the ground state 
+\begin_inset Formula $\phi^{(0)}_1$
+\end_inset
+
+ at 
+\begin_inset Formula $t = 0$
+\end_inset
+
+: 
+\begin_inset Formula \begin{flalign}
+i\hbar \frac{\partial}{\partial t} c_k\left(t\right)
+& = \sum_n c_n\left(t\right) e^{-\frac{i}{\hbar}\left(E_n - E_k\right) t} 
+\int \phi_k^{(0)*} \hat{H}_I\left(t\right) \phi^{(0)}_n d\vec{x}
+\\
+& = e^{-\frac{i}{\hbar}\left(E_1 - E_k\right) t} 
+\int \phi_k^{(0)*} \left[\hat{H}_I e^{-\frac{iEt}{\hbar}}\right] \phi^{(0)}_1 d\vec{x}
+\\
+& = e^{-i\left(\omega_1 - \omega_k\right) t} 
+\int \phi_k^{(0)*} \left[\hat{H}_I e^{-i\omega t}\right] \phi^{(0)}_1 d\vec{x}
+\\
+& = e^{-i\left(\omega_1 - \omega_k\right) t} e^{-i\omega t}
+\int \phi_k^{(0)*} \hat{H}_I \phi^{(0)}_1 d\vec{x}
+\end{flalign}
+\end_inset
+
+We define 
+\begin_inset Formula $\Delta\omega = \omega - (\omega_k - \omega_1)$
+\end_inset
+
+ as the 
+\shape italic
+detuning
+\shape default
+, the frequency mismatch between the electromagnetic wave and the frequency associated with the energy difference between 
+\begin_inset Formula $\phi^{(0)}_1$
+\end_inset
+
+ and 
+\begin_inset Formula $\phi^{(0)}_k$
+\end_inset
+
+, and simplify: 
+\begin_inset Formula \begin{flalign}
+i\hbar \frac{\partial}{\partial t} c_k\left(t\right)
+& = e^{-i\Delta\omega t} \int \phi_k^{(0)*} \hat{H}_I \phi^{(0)}_1 d\vec{x}
+\end{flalign}
+\end_inset
+
+Now that we have a simple expression for the change in 
+\begin_inset Formula $c_n\left(t\right)$
+\end_inset
+
+, we can just integrate this to get the probability amplitude of finding the atom in state 
+\begin_inset Formula $\psi_k^{(0)}$
+\end_inset
+
+ at time 
+\begin_inset Formula $t$
+\end_inset
+
+. 
+\begin_inset Formula \begin{flalign}
+c_n\left(t\right) = \int_{0}^{t} \frac{\partial}{\partial t} c_k\left(t'\right) dt'
+& = \frac{1}{i\hbar} \int_{0}^{t} e^{-i\Delta\omega t'} 
+\int \phi_k^{(0)*} \hat{H}_I \phi^{(0)}_1 d\vec{x} \, dt'
+\\
+& = \frac{1}{i\hbar} \int_{0}^{t} e^{-i\Delta\omega t'} 
+\langle \phi_k^{(0)} \vert \hat{H}_I \vert \phi^{(0)}_1 \rangle dt'
+\end{flalign}
+\end_inset
+
+This looks similar to a Fourier transform, but instead of integrating over all time, the integral only takes place between times 
+\begin_inset Formula $0$
+\end_inset
+
+ and 
+\begin_inset Formula $t$
+\end_inset
+
+. This is equivalent to multiplying by the boxcar function defined such that it is equal to 1 inside the interval and 0 outside of it. We can also pull out the 
+\begin_inset Formula $\langle \phi_k^{(0)} \vert \hat{H}_I \vert \phi^{(0)}_1 \rangle$
+\end_inset
+
+ term, as we have removed the time dependence from 
+\begin_inset Formula $\hat{H}_I$
+\end_inset
+
+: 
+\begin_inset Formula \begin{flalign}
+c_n\left(t\right) 
+& = \frac{1}{i\hbar} \langle \phi_k^{(0)} \vert \hat{H}_I \vert \phi^{(0)}_1 \rangle
+\int_{-\infty}^{\infty} \text{boxcar}\left(0, t\right) e^{-i\Delta\omega t'}  dt'
+\end{flalign}
+\end_inset
+
+The Fourier transform of the boxcar function is a sinc function multiplied by a shift factor: 
+\begin_inset Formula \begin{flalign}
+c_n\left(t\right) 
+& = \frac{1}{i\hbar} \langle \phi_k^{(0)} \vert \hat{H}_I \vert \phi^{(0)}_1 \rangle
+e^{-\pi i \Delta\omega t} \frac{\sin\left(\frac{1}{2}\Delta\omega t\right)}{\frac{1}{2}\Delta\omega}
+\end{flalign}
+\end_inset
+
+To get the probability, we use the modulus as per the Born rule: 
+\begin_inset Formula \begin{flalign}
+\lvert c_n\left(t\right) \rvert^2 = c_n\left(t\right)^* c_n\left(t\right)
+& = \frac{1}{\hbar^2} \vert\langle \phi_k^{(0)} \vert \hat{H}_I \vert \phi^{(0)}_1 \rangle\vert^2
+    \left(\frac{\sin\left(\frac{1}{2}\Delta\omega t\right)}{\frac{1}{2}\Delta\omega}\right)^2
+\end{flalign}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The Fourier transform allows us to make a statement about the pulse size and the frequency mismatch. An increasing pulse duration will decrease the width of its Fourier transform, meaning that very short pulses have a higher probability of exciting states far from the frequency of the electromagnetic wave. This is an expression of the uncertainty principle, which holds not just for quantum systems, but any system that admits wavelike behavior. With a longer pulse, the mismatch tolerance is reduced, but we are more likely to only excite the system to a state whose energy difference matches that frequency.
+\end_layout
+
+\begin_layout Subsection
+A continuum of states
+\end_layout
+
+\begin_layout Standard
+A real system will likely consist of many state that are accessible by a short excitation. If we have a near-continuum of possible final states, we may want to determine the probability of the final state being within the continuum.
+\end_layout
+
+\begin_layout Standard
+The number of states 
+\begin_inset Formula $N$
+\end_inset
+
+ within some energy interval 
+\begin_inset Formula $[E_{\text{min}}, E_{\text{max}}]$
+\end_inset
+
+ is given by the integral of the density of states (DOS) function: 
+\begin_inset Formula \begin{equation}
+N = \int_{E_{\text{min}}}^{E_{\text{max}}} \rho\left(E\right) dE
+\end{equation}
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
