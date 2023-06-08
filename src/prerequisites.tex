@@ -1,0 +1,64 @@
+\section*{Prerequisites}
+
+These notes assume familiarity with the mathematics of introductory quantum mechanics as taught in
+an undergraduate chemistry course.
+
+\subsection*{Wavefunctions}
+
+Every quantum state $\psi$ can be thought of as a normalized square-integrable function,
+$\psi\left(\vec{x},t\right)$, unique up to multiplication by a nonzero complex scalar. Because
+wavefunctions may be freely added to each other or scaled, they form a vector space -- specifically,
+an infinite-dimensional complex projective Hilbert space. A \textit{Hilbert space} is a vector space
+that admits some notion of distance, which we can obtain from the \textit{overlap integral}:
+\begin{equation*}
+\int \psi_a\left(\vec{x},t\right)^* \psi_b\left(\vec{x},t\right) d\vec{x}
+\end{equation*}
+This integral serves the same purpose as the dot product, and describes the degree of similarity
+between $\psi_a$ and $\psi_b$. The star represents complex conjugation, critical for obtaining
+real-valued dot products from complex-valuedfunctions.
+
+In many cases, we will be interested in a restricted subset of functions in this space. We can
+express a state $\psi$ in terms of basis functions $\phi$:
+\begin{equation*}
+\psi = \sum_{n} c_n \phi_n
+\end{equation*}
+The choice of basis is arbitrary, as long as all $\psi_n$ are linearly independent. Now that the
+basis is known, we can describe $\phi$ as a column vector:
+\begin{equation*}
+\psi = \begin{bmatrix}
+c_1 \\ c_2 \\ c_3 \\ ...
+\end{bmatrix}
+\end{equation*}
+In a vector representation, the complex conjugate is insufficient to calculate the overlap integral.
+Instead, we use the \textit{adjoint}, which combines complex conjugation with transposition:
+\begin{equation*}
+\psi^\dagger = \begin{bmatrix}
+c_1^* & c_2^* & c_3^* & ...
+\end{bmatrix}
+\end{equation*}
+This allows us to represent the dot product as a matrix multiplication.
+
+The final form of notation we will use is the Dirac bra-ket notation. A wavefunction is described by
+a \textit{ket}, $\vert\psi\rangle$, and its adjointis the corresponding \textit{bra},
+$\langle\psi\vert$. The dot product of two wavefunctions is neatly described with this notation:
+\begin{equation*}
+\langle \psi_a \vert \psi_b \rangle = 
+\int \psi_a\left(\vec{x},t\right)^* \psi_b\left(\vec{x},t\right) d\vec{x}
+\end{equation*}
+The \textit{bra-ket} expression implicitly includes the integral.
+
+\subsection*{Operators}
+
+If functions can be thought of as vectors, operators are matrices which act on those vectors. By
+convention, an operator will be given a hat : for example, the momentum operator is
+$\hat{p} = -i\hbar\frac{d}{dx}$.
+
+Operators corresponding to observable quantities are Hermitian, meaning they are equal to their
+adjoint. However, not all operators are Hermitian: for instance, the propagator, as well as the
+creation and annihilation operators. For an operator $\hat{A}$ which corresponds to an observable
+quantity $A$, we can calculate its \textit{expectation value}, the approximate value of that
+observable for a wavefunction $\psi$, with an integral:
+\begin{equation*}
+\langle \hat{A} \rangle = \langle \psi \vert \hat{A} \vert \psi \rangle = 
+\int \psi\left(\vec{x},t\right)^* \hat{A} \psi\left(\vec{x},t\right) d\vec{x}
+\end{equation*}
