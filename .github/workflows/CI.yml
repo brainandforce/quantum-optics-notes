@@ -4,6 +4,7 @@ on:
     paths-ignore:
       - README.md
       - LICENSE
+      - qonotes.pdf
       - lyx/
 jobs:
   build_latex:
